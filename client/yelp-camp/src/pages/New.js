@@ -7,6 +7,9 @@ export default function New() {
     const [campgroundData, setCampgroundData] = React.useState({
         title: "",
         location: "",
+        image: "",
+        description: "",
+        price: 0,
         id: ""
     })
 
@@ -31,32 +34,93 @@ export default function New() {
 
     }
     return (
-        <div>
-            <h1>Add new campground</h1>
-            <div className="form">
-                <div>
-                    <label for="title">Title</label>
+        <div className="row">
+            <h1 className="text-center">Add new campground</h1>
+            <div className="col-6 offset-3">
+                <div
+                    className="mb-3">
+                    <label className="form-label">
+                        Title
+                    </label>
                     <input
                         type="text"
                         placeholder="Title"
-                        className="form--input"
+                        className="form-control"
                         name="title"
                         value={campgroundData.title}
                         onChange={handleChange}
                     />
                 </div>
-                <div>
-                    <label for="location">Location</label>
+                <div
+                    className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor="location">
+                        Location
+                    </label>
                     <input
                         type="text"
                         placeholder="Location"
-                        className="form--input"
+                        className="form-control"
                         name="location"
                         value={campgroundData.location}
                         onChange={handleChange}
                     />
                 </div>
-                <input type="submit" value="Submit Campground" onClick={handleSubmit} />
+                <div
+                    className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor="image">
+                        Image
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="Image"
+                        className="form-control"
+                        name="image"
+                        value={campgroundData.image}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div
+                    className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor="price">
+                        Price
+                    </label>
+                    <div className="input-group">
+                        <span className="input-group-text">$</span>
+                        <input
+                            type="number"
+                            placeholder="Price"
+                            className="form-control"
+                            name="price"
+                            value={campgroundData.price}
+                            onChange={handleChange}
+                        />
+                    </div>
+                </div>
+                <div
+                    className="mb-3">
+                    <label
+                        className="form-label"
+                        htmlFor="description">
+                        Description
+                    </label>
+                    <textarea
+                        type="textarea"
+                        placeholder="Description"
+                        className="form-control"
+                        name="description"
+                        value={campgroundData.description}
+                        onChange={handleChange}
+                    />
+                </div>
+                <div className="mb-3">
+                    <input className="btn btn-success" type="submit" value="Submit Campground" onClick={handleSubmit} />
+                </div>
             </div>
             <Outlet />
         </div>

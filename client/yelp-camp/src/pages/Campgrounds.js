@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+
+import CampgroundItem from "../components/CampgroundItem";
 
 export default function Campgrounds() {
     const [backEndData, setBackEndData] = React.useState([{}])
@@ -14,23 +15,32 @@ export default function Campgrounds() {
             }
         )
     }, []);
+
+    const campgroundsItems = backEndData.map((campground) => < CampgroundItem
+        key={campground._id}
+        _id={campground._id}
+        title={campground.title}
+        location={campground.location}
+        image={campground.image}
+        description={campground.description}
+        price={campground.price}
+
+    />)
+    // const campgroundsItems = backEndData.map((campground) =>
+
+
+    // );
+
     return (
         <div className="Campgrounds">
             <h1>All campground</h1>
-            {(fetchStatus === false) ?
-                (<p>Loading...</p>) :
-                backEndData.map((campground) => (
+            {
+                (fetchStatus === false) ?
+                    (<p>Loading...</p>) :
                     <ul>
-                        <li>
-                            <Link
-                                to={`/campgrounds/${campground._id}`}
-                                state={campground}
-                            >
-                                {campground.title} - {campground.location}
-                            </Link>
-                        </li>
+                        {campgroundsItems}
                     </ul>
-                ))}
+            }
         </div>
     )
 }
