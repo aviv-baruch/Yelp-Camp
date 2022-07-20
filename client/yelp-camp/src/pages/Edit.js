@@ -11,6 +11,9 @@ export default function New() {
     let [editedCampgroundData, setEditedCampgroundData] = React.useState({
         title: data.title,
         location: data.location,
+        image: data.image,
+        description: data.description,
+        price: data.price,
         id: fixedID
     })
 
@@ -33,36 +36,99 @@ export default function New() {
                 console.error(err);
             });
     }
-
     return (
         <div>
-            <h1>Edit current Campground</h1>
-            <div className="form">
-                <div>
-                    <label for="title">Title</label>
-                    <input
-                        type="text"
-                        placeholder="Title"
-                        className="form--input"
-                        name="title"
-                        value={editedCampgroundData.title}
-                        onChange={handleChange}
-                    />
+            <div className="row">
+                <h1 className="text-center">Edit current Campground</h1>
+                <div className="col-6 offset-3">
+                    <div
+                        className="mb-3">
+                        <label className="form-label">
+                            Title
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            className="form-control"
+                            name="title"
+                            value={editedCampgroundData.title}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div
+                        className="mb-3">
+                        <label
+                            className="form-label"
+                            htmlFor="location">
+                            Location
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Location"
+                            className="form-control"
+                            name="location"
+                            value={editedCampgroundData.location}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div
+                        className="mb-3">
+                        <label
+                            className="form-label"
+                            htmlFor="image">
+                            Image
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Image"
+                            className="form-control"
+                            name="image"
+                            value={editedCampgroundData.image}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div
+                        className="mb-3">
+                        <label
+                            className="form-label"
+                            htmlFor="price">
+                            Price
+                        </label>
+                        <div className="input-group">
+                            <span className="input-group-text">$</span>
+                            <input
+                                type="number"
+                                placeholder="Price"
+                                className="form-control"
+                                name="price"
+                                value={editedCampgroundData.price}
+                                onChange={handleChange}
+                            />
+                        </div>
+                    </div>
+                    <div
+                        className="mb-3">
+                        <label
+                            className="form-label"
+                            htmlFor="description">
+                            Description
+                        </label>
+                        <textarea
+                            type="textarea"
+                            placeholder="Description"
+                            className="form-control"
+                            name="description"
+                            value={editedCampgroundData.description}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className="mb-3">
+                        <input className="btn btn-success" type="submit" value="Submit Campground" onClick={handleSubmit} />
+                    </div>
                 </div>
-                <div>
-                    <label for="location">Location</label>
-                    <input
-                        type="text"
-                        placeholder="Location"
-                        className="form--input"
-                        name="location"
-                        value={editedCampgroundData.location}
-                        onChange={handleChange}
-                    />
-                </div>
-                <input type="submit" value="Submit Campground" onClick={handleSubmit} />
+                <Outlet />
             </div>
-            <Outlet />
         </div>
+
     );
 };

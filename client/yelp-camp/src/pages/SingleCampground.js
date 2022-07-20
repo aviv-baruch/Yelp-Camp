@@ -1,6 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import '../index.css';
 
 export default function SingleCampground() {
     const navigate = useNavigate()
@@ -19,22 +20,40 @@ export default function SingleCampground() {
     }
 
     return (
-        <div>
-            <h1>{data.title}</h1>
+        <div id="campground--card">
+            < div className="card w-50">
+                <img className="img-thumbnail" src={data.image} alt={data.title} />
+                <div className="card-body">
+                    <h5 className="card-title">{data.title}</h5>
+                    <p className="card-text">{data.description}</p>
+                </div>
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item text-muted">{data.location}</li>
+                    <li className="list-group-item">{data.price}$ / night</li>
+                </ul>
+                <div className="card-body ">
+                    <Link
+                        className={"card-link btn btn-info"}
+                        to={`/campgrounds/${travelTo}/edit`}
+                        key={data.id}
+                        state={data}
+                    >
+                        Edit
+                    </Link >
+                    <input className="btn btn-danger ms-2" type="submit" value="DELETE" onClick={deleteItem} />
+                </div>
+            </div >
+
+            {/* 
+            <h1></h1>
             <h2>{data.location}</h2>
-            <img height={"400"} src={data.image} alt={data.title} />
-            <p>{data.description}</p>
+             />
+            <p>{}</p>
             <p>Price: {data.price}</p>
-            <Link
-                to={`/campgrounds/${travelTo}/edit`}
-                key={data.id}
-                state={data}
-            >
-                Edit
-            </Link >
+           
             <br />
-            <input type="submit" value="DELETE" onClick={deleteItem} />
-            <Outlet />
+             */}
+            < Outlet />
         </div >
     );
 };
