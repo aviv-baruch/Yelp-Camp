@@ -1,13 +1,17 @@
-import { Outlet, useLocation } from 'react-router-dom';
+
+import { Outlet, useLocation, } from 'react-router-dom';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import '../index.css';
+import React from 'react';
+
+
 
 export default function SingleCampground() {
     const navigate = useNavigate()
     const data = useLocation().state
     let travelTo = data._id === undefined ? data.id : data._id
-    console.log(data)
+
     function deleteItem(event) {
         axios
             .delete(`http://localhost:5000/campgrounds/${travelTo}`, { travelTo })
@@ -43,17 +47,8 @@ export default function SingleCampground() {
                     <input className="btn btn-danger ms-2" type="submit" value="DELETE" onClick={deleteItem} />
                 </div>
             </div >
-
-            {/* 
-            <h1></h1>
-            <h2>{data.location}</h2>
-             />
-            <p>{}</p>
-            <p>Price: {data.price}</p>
-           
-            <br />
-             */}
             < Outlet />
         </div >
     );
+
 };

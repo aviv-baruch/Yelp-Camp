@@ -21,6 +21,7 @@ export default function App() {
               <Route index element={<SingleCampground />} />
               <Route path='edit' element={<Edit />} />
             </Route>
+            <Route path='*' element={<Error />} />
             <Route path='new' element={<NewCampground />} />
           </Route>
           <Route path='*' element={<Error />} />

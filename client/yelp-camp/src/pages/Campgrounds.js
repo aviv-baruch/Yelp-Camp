@@ -26,14 +26,10 @@ export default function Campgrounds() {
         price={campground.price}
 
     />)
-    // const campgroundsItems = backEndData.map((campground) =>
-
-
-    // );
 
     return (
         <div className="Campgrounds">
-            <h1>All campground</h1>
+            <h1 className="text-center">All campground</h1>
             {
                 (fetchStatus === false) ?
                     (<p>Loading...</p>) :
